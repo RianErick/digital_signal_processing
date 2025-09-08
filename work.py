@@ -53,4 +53,12 @@ def sobel_filters(image):
     magnitude = cv2.magnitude(sobel_x, sobel_y)
     return (np.uint8(np.abs(sobel_x)), np.uint8(np.abs(sobel_y)), np.uint8(magnitude)) 
 
+sx, sy, mag = sobel_filters(img1)
+ut.show_images([sx, sy, mag], ["Sobel X (Original)", "Sobel Y (Original)", "Magnitude (Original)"])
 
+sx_n, sy_n, mag_n = sobel_filters(img1_noisy)
+ut.show_images([sx_n, sy_n, mag_n], ["Sobel X (Ruído)", "Sobel Y (Ruído)", "Magnitude (Ruído)"])
+
+for name, f_img in filters_img1.items():
+    sx_f, sy_f, mag_f = sobel_filters(f_img)
+    ut.show_images([sx_f, sy_f, mag_f], [f"Sobel X ({name})", f"Sobel Y ({name})", f"Magnitude ({name})"])
